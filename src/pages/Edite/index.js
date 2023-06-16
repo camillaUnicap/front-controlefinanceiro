@@ -23,6 +23,7 @@ export default function Form() {
     const fetchTransaction = async () => {
         try {
             const response = await api.get(`/${userId}/transactions/${transactionId}`);
+            console.log("w", response.data);
             const { name, value } = response.data;
             setName(name);
             setValue(value.toString());
@@ -39,14 +40,15 @@ export default function Form() {
 
         try {
             await api.put(`/${userId}/transactions/${transactionId}`, updatedTransaction);
-            navigation.navigate("Main", { userId });
+            // navigation.navigate("Main", userId);
+            navigation.goBack();
         } catch (error) {
             console.error(error);
         }
     };
 
     const handleNavigateBack = () => {
-        navigation.navigate("Main");
+        navigation.navigate("Main", userId);
     };
 
     return (

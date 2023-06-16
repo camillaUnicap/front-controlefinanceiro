@@ -6,9 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
 
 const TransactionItem = (props) => {
+
   const navigation = useNavigation();
   const userId = props.userId;
-  console.log(userId);
 
   const handleEditPress = async (transactionId) => {
     console.log(transactionId)
@@ -16,7 +16,6 @@ const TransactionItem = (props) => {
   };
 
   const handleDeletePress = (transactionId) => {
-    console.log('e',transactionId)
     Alert.alert(
       "Atenção",
       "Você tem certeza que deseja excluir este item?",
@@ -31,7 +30,8 @@ const TransactionItem = (props) => {
           onPress: () => {
             try {
               api.delete(`/${userId}/transactions/${transactionId}`);
-              navigation.navigate("Main", userId);
+              // navigation.navigate("Main", userId);
+              navigation.goBack();
             } catch (error) {
               console.error(error);
             }

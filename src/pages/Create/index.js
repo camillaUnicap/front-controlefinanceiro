@@ -16,7 +16,8 @@ export default function Create() {
 
     const route = useRoute();
 
-    const userId = route.params.userId;
+    const userId = route.params.userId ? route.params.userId : route.params;
+
 
     handleSubmit = async () => {
         const transaction = {

@@ -12,7 +12,7 @@ export default function Transactions() {
 
     const route = useRoute();
 
-    const userId = route.params.userId;
+    const userId = route.params.userId ? route.params.userId : route.params;
 
     useEffect(() => {
         loadTransactions();

@@ -9,11 +9,12 @@ import Create from './pages/Create';
 import Transactions from './pages/Transactions';
 import Header from './components/Header';
 import { Button, Text } from 'react-native';
+import Form from './pages/Edite';
 
 const AppStack = createStackNavigator();
 
 const stackedPageOptions = {
-    title: "Lista Fácil",
+    title: "Controle Financeiro",
     headerTitleStyle: {
         marginRight: 55,
         alignSelf: 'center',
@@ -26,7 +27,7 @@ const stackedPageOptions = {
 
 const mainPageOptions = {
     headerLeft: null,
-    title: "Lista Fácil",
+    title: "Controle Financeiro",
     headerTitleStyle: {
         marginLeft: 50,
         alignSelf: 'center',
@@ -53,7 +54,7 @@ const Routes = () => {
                 <AppStack.Screen name="Register" component={Register} options={initialPages} />
                 <AppStack.Screen name="Main" component={Main} options={mainPageOptions} />
                 <AppStack.Screen name="Create" component={Create} options={stackedPageOptions} />
-                <AppStack.Screen name="Transactions" component={Transactions} options={stackedPageOptions} />
+                <AppStack.Screen name="Form" component={Form} options={stackedPageOptions} />
             </AppStack.Navigator>
         </NavigationContainer>
     )

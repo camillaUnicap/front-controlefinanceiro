@@ -38,7 +38,7 @@ export default function Login() {
     }
     return (
         <View style={landingStyles.container}>
-            <Text style={landingStyles.header}>Lista Fácil</Text>
+            <Text style={landingStyles.header}>Controle Financeiro</Text>
             <View style={landingStyles.form} >
                 <View style={landingStyles.content}>
                     <Text style={landingStyles.title}>Login</Text>

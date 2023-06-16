@@ -35,7 +35,7 @@ export default function Transactions() {
 
     return (
         <View style={globalStyles.container}>
-            <Text style={globalStyles.title}>Your transactions</Text>
+            <Text style={globalStyles.title}>Seus itens</Text>
 
             <View style={styles.transactionContainer}>
                 {transactions.map(transaction => {

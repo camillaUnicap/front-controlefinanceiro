@@ -3,17 +3,20 @@ import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import globalStyles from '../../../public/stylesheets/main';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import api from '../../services/api';
 
 const TransactionItem = (props) => {
   const navigation = useNavigation();
   const userId = props.userId;
   console.log(userId);
+
   const handleEditPress = async (transactionId) => {
     console.log(transactionId)
-    navigation.navigate("Create", transactionId, userId);
+    navigation.navigate("Form", {transactionId, userId});
   };
 
   const handleDeletePress = (transactionId) => {
+    console.log('e',transactionId)
     Alert.alert(
       "Atenção",
       "Você tem certeza que deseja excluir este item?",
@@ -27,7 +30,8 @@ const TransactionItem = (props) => {
           text: "Sim",
           onPress: () => {
             try {
-              axios.delete(`/${userId}/transactions/${transactionId}`);
+              api.delete(`/${userId}/transactions/${transactionId}`);
+              navigation.navigate("Main", userId);
             } catch (error) {
               console.error(error);
             }
@@ -41,16 +45,14 @@ const TransactionItem = (props) => {
   return (
     <View style={globalStyles.transactionItem} key={props.id}>
       <Text style={globalStyles.transactionText}>{props.name}</Text>
-      {props.value}
-      <View style={styles.buttonsContainer}>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeletePress(props.id)}>
-            <Icon name="trash" color="white" size={18} />
-          </TouchableOpacity>
+          {props.value}
           <TouchableOpacity style={styles.editButton} onPress={() => handleEditPress(props.id)}>
             <Icon name="edit" color="white" size={18} />
           </TouchableOpacity>
-        </View>
+          <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeletePress(props.id)}>
+            <Icon name="trash-2" color="white" size={18} />
+          </TouchableOpacity>
       </View>
     </View>
   );
@@ -58,19 +60,19 @@ const TransactionItem = (props) => {
 
 const styles = StyleSheet.create({
   buttonsContainer: {
-    flexDirection: 'row-reverse',
-    alignItems: 'flex-end',
+    flexDirection: "row",
+    alignItems: 'flex-start',
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
     paddingBottom: 10,
     marginTop: 10,
   },
   editButton: {
-    marginLeft: 40,
+    marginRight: 10,
     height: 40,
     backgroundColor: '#04d361',
     borderRadius: 10,
-    padding: 10,
+    padding: 8,
     fontSize: 12,
     elevation: 10,
     shadowOpacity: 10,
@@ -78,12 +80,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   deleteButton: {
-    marginLeft: 40,
+    marginRight: 10,
     height: 40,
-    width: 20,
+    width: 40,
     backgroundColor: 'red',
     borderRadius: 10,
-    padding: 10,
+    padding: 8,
     fontSize: 12,
     elevation: 10,
     shadowOpacity: 10,

@@ -80,7 +80,7 @@ export default function Main() {
             <Text style={styles.title}>Valor total</Text>
             <Text style={styles.balance}>R$ {user.balance}</Text>
             <View style={styles.transactionHeader}>
-                <Text style={styles.transactionHeaderTitle}>Lista</Text>
+                <Text style={styles.transactionHeaderTitle}>Lista de Gastos</Text>
                 <RectButton style={styles.button} onPress={handleNavigateToTransactions}>
                     <Text style={styles.buttonText}>Mais</Text>
                 </RectButton>

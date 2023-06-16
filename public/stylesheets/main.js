@@ -31,12 +31,13 @@ module.exports = StyleSheet.create({
     transactionText: {
         color: '#616161',
         fontSize: 18,
-        marginLeft: 20
+        marginLeft: 10
     },
     positive: {
         color: '#5ACC24',
         fontSize: 18,
-        marginRight: 20
+        marginRight: 20,
+        paddingTop: 7
     },
     negative: {
         color: '#D3483F',

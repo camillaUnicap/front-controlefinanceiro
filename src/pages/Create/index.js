@@ -28,7 +28,7 @@ export default function Create() {
         if (name.length == 0 || value.length == 0) {
             alert('Por favor insira todos os campos');
         } else {
-            await api.post(`/${userId}/transactions`, transaction);
+            await api.post(`/${userId}/transaction`, transaction);
             handleNavigateBack()
         }
     }

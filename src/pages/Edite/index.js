@@ -12,6 +12,7 @@ export default function Form() {
     const navigation = useNavigation();
     const route = useRoute();
     const { userId, transactionId } = route.params;
+    console.log(userId, transactionId);
 
     const [name, setName] = useState('');
     const [value, setValue] = useState('');
@@ -27,6 +28,7 @@ export default function Form() {
             const { name, value } = response.data;
             setName(name);
             setValue(value.toString());
+            console.log(name, value);
         } catch (error) {
             console.error(error);
         }
@@ -37,11 +39,11 @@ export default function Form() {
             name,
             value: parseFloat(value)
         };
-
+        console.log(updatedTransaction);
         try {
-            await api.put(`/${userId}/transactions/${transactionId}`, updatedTransaction);
-            // navigation.navigate("Main", userId);
-            navigation.goBack();
+            const result = await api.put(`/${userId}/transaction/${transactionId}`, updatedTransaction);
+            console.log(result);
+            navigation.navigate("Main", userId);
         } catch (error) {
             console.error(error);
         }
@@ -55,11 +57,11 @@ export default function Form() {
         <View style={globalStyles.container}>
             <Text style={globalStyles.title}>Editar uma item</Text>
 
-            <InputContainer name="Name" onChangeText={setName} />
+            <InputContainer name="Name" onChangeText={setName} value={name} />
 
             <View style={styles.inputContainer}>
                 <Text style={styles.placeholder}>Valor</Text>
-                <TextInput style={styles.input} keyboardType='numeric' onChangeText={setValue} />
+                <TextInput style={styles.input} keyboardType='numeric' onChangeText={setValue} value={value} />
             </View>
 
             <View style={styles.blank}></View>

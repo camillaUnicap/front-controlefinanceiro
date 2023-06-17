@@ -26,7 +26,8 @@ export default function Login() {
         }
 
         try {
-            const re = await api.post('/', user);
+            const re = await api.post('/create', user);
+            console.log(re.data);
             alert('Cadastro realizado!');
             navigation.navigate('Login');
         } catch (e) {

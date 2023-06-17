@@ -8,7 +8,6 @@ import Main from './pages/Main';
 import Create from './pages/Create';
 import Transactions from './pages/Transactions';
 import Header from './components/Header';
-import { Button, Text } from 'react-native';
 import Form from './pages/Edite';
 
 const AppStack = createStackNavigator();

@@ -9,6 +9,8 @@ const TransactionItem = (props) => {
 
   const navigation = useNavigation();
   const userId = props.userId;
+  console.log(props);
+  console.log(userId);
 
   const handleEditPress = async (transactionId) => {
     console.log(transactionId)
@@ -16,6 +18,7 @@ const TransactionItem = (props) => {
   };
 
   const handleDeletePress = (transactionId) => {
+    console.log(transactionId);
     Alert.alert(
       "Atenção",
       "Você tem certeza que deseja excluir este item?",
@@ -29,9 +32,9 @@ const TransactionItem = (props) => {
           text: "Sim",
           onPress: () => {
             try {
-              api.delete(`/${userId}/transactions/${transactionId}`);
-              // navigation.navigate("Main", userId);
-              navigation.goBack();
+             const result=  api.delete(`/${userId}/transaction/${transactionId}`);
+             console.log(result);
+              navigation.navigate("Main", userId);
             } catch (error) {
               console.error(error);
             }
